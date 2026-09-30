@@ -7,7 +7,7 @@ app = Flask(__name__)
 def receive_data():
     print("fish")
     data = request.json
-    if data["fish"] == "tuff":
+    if data["Button"] == "on":
         return("doit")
     print("Received data from Feather:", data)
     return jsonify({"status": "success", "received": data}), 200
