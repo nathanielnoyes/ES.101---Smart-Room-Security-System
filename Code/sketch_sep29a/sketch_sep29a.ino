@@ -4,7 +4,7 @@
 
 const char* ssid = "BPstudent";
 const char* pass = "studentuse";
-const char* home = "http://10.30.1.16:5000";
+const char* home = "http://10.30.1.16:5000/api/data";
 
 void setup() {
   Serial.begin(115200);
@@ -22,11 +22,15 @@ void loop() {
     HTTPClient http;
 
     http.begin(client,home);
+    int httpCode = http.GET();
+    Serial.println(httpCode);
     http.addHeader("Content-Type","application/json");
 
-    String HttpRequestData = "{fish = 'tuff'}";
+    String HttpRequestData = "{\"fish\" : \"tuff\"}";
     int HttpResponceCode = http.POST(HttpRequestData);
     Serial.println(HttpResponceCode);
+    String paload = http.getString();
+    Serial.println(paload);
     http.end();
     
   }
