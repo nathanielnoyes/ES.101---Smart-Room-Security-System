@@ -4,6 +4,8 @@
 
 const char* ssid = "BPstudent";
 const char* password = "studentuse";
+const char* home = "http://10.30.1.16:5000";
+
 
 int butt = 12;
 int pir = 14;
@@ -33,7 +35,12 @@ void loop() {
   //Serial.println(str);
   delay(2500);
   if(WiFi.status()== WL_CONNECTED){
+    WiFiClient client;
     HTTPClient http;
+
+    WiFi.begin(ssid,password);
+    
+
   }
 
 }
