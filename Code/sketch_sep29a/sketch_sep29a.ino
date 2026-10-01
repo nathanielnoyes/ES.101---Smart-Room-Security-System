@@ -45,8 +45,11 @@ void setup() {
 void loop() {
   butt = digitalRead(12);
   pir = digitalRead(14);
-  String str = "{\"Button\" : " + "butt" + ",\"Pir\" : \" " + "pir"+ "\"}";
-  send_info(str);
+  if(not(butt) || pir){
+    String str = ("{\"Button\" : " + String(not(butt)) + ",\"Pir\" : " + String(pir) + "}");
+    send_info(str);
+    delay(10000);
+  }
   delay(250);
 }
 
