@@ -29,12 +29,13 @@ REFERENCES sensors(SENSORID)
 
 @app.route('/api/data', methods=['POST'])
 def receive_data():
-    print("fish")
     data = request.json
     print("Received data from Feather:", data)
     date = datetime.datetime.now()
-    sid = connect.execute("select SENSORID, SENSORID from triggers, sensors;")
+    sid = connect.execute("select triggers.SENSORID, sensors.SENSORID from triggers, sensors;")
+    
     command = f"insert into triggers values({date},{data["ID"]});"
+    print(command)
     cursor.execute(command)
     print(command)
     return jsonify({"status": "success", "received": data}), 200
