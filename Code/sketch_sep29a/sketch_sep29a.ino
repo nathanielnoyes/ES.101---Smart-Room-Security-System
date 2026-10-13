@@ -46,7 +46,7 @@ void loop() {
   butt = digitalRead(12);
   pir = digitalRead(14);
   if(not(butt) || pir){
-    String str = ("{\"Button\" : " + String(not(butt)) + ",\"Pir\" : " + String(pir) + "}");
+    String str = ("{\"ID\" : " + String(0) +\"Button\" : " + String(not(butt)) + ",\"Pir\" : " + String(pir) + "}");
     send_info(str);
     delay(10000);
   }

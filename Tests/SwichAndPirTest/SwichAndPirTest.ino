@@ -17,7 +17,7 @@ void setup() {
 
 void loop() {
   str = digitalRead(butt);
-  digitalWrite(0,digitalRead(pir));
+  digitalWrite(1,digitalRead(pir));
   Serial.println(str);
   delay(100);
 
