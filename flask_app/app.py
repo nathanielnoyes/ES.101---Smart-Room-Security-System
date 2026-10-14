@@ -41,6 +41,16 @@ def receive_data():
         print(command)
     return jsonify({"status": "success", "received": data}), 200
 
+@app.route('/')
+def home():
+    triggers = 
+    return("""<section id="SQL_database" class="row">
+    {% for trigger in triggers %}
+        <p>{{trigger}}</p>
+    {% endfor %}
+</section>""")
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
     
