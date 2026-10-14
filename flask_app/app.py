@@ -3,21 +3,21 @@ import json
 import datetime
 import sqlite3#tables are sensors and triggers
 
-connect = sqlite3.connect('database.db',check_same_thread=False)# format, check thead would make it error out becuse its sends back at different theread
+connect = sqlite3.connect('database.db',check_same_thread=True)# format, check thead would make it error out becuse its sends back at different theread
 cursor = connect.cursor()
 app = Flask(__name__)
 
 #try to accses or initalise tables
 connect.execute(
     '''create table if not exists sensors (
-    SENSORID int IDENTITY(1,1) PRIMARY KEY,
+    SENSORID INTEGER PRIMARY KEY AUTOINCREMENT,
     NAME varchar(255) NOT NULL,
     TYPE varchar(255)
     );'''
 )
 connect.execute(
     '''create table if not exists triggers (
-EVENTID int IDENTITY(1,1) PRIMARY KEY,
+EVENTID INTEGER PRIMARY KEY AUTOINCREMENT,
 TIME DATETIME,
 SENSORID int,
 CONSTRAINT fk_sensor
@@ -29,15 +29,16 @@ REFERENCES sensors(SENSORID)
 
 @app.route('/api/data', methods=['POST'])
 def receive_data():
+
     data = request.json
     print("Received data from Feather:", data)
     date = datetime.datetime.now()
-    sid = connect.execute("select triggers.SENSORID, sensors.SENSORID from triggers, sensors;")
-    
-    command = f"insert into triggers values({date},{data["ID"]});"
-    print(command)
-    cursor.execute(command)
-    print(command)
+    with sqlite3.connect("database.db") as connect:
+        command = f"insert into triggers(TIME, SENSORID) values('{date}','{data["ID"]}');"
+        cursor = connect.cursor()
+        print(command)
+        print(cursor.execute(command))
+        print(command)
     return jsonify({"status": "success", "received": data}), 200
 
 if __name__ == '__main__':
