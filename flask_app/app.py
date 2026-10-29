@@ -54,7 +54,18 @@ def home():
                 triggerList.append(trigger)
                 print(f"trigerlist:  {triggerList}")
             trigger_list.append(triggerList)
-    return(render_template("index.html", trigger_list = trigger_list))
+    with sqlite3.connect("database.db") as connect:
+        cursor = connect.cursor()
+        sensors = cursor.execute("select * from sensors;")
+        sensor_list = []
+
+        for sensor_subList in sensors:
+            sensorList = []
+            for sensor in sensor_subList:
+                sensorList.append(sensor)
+                print(f"trigerlist:  {sensorList}")
+            sensor_list.append(sensorList)
+    return(render_template("index.html", trigger_list = trigger_list, sensor_list = sensor_list))
 
 
 if __name__ == '__main__':

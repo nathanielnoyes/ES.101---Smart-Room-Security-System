@@ -3,17 +3,22 @@
     margin: 0;
     padding: 0;
 
-    font-size: 12px;
+    font-size: 2vw;
+
 }
 table{
-    width: 33%;
+    width: 50%;
 }
 table,th,td{
     border: 1px solid blue;
     padding: 1px;
     margin: 10px;
+    align-items: center;
     
 }
-tr{
-    align-items: center;
+td{
+    margin-left: 100%;
+    
+    align-self: center;
+    display: table-cell;
 }
