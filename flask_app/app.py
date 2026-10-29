@@ -52,8 +52,8 @@ def home():
             triggerList = []
             for trigger in trigger_subList:
                 triggerList.append(trigger)
-                print(triggerList)
-            trigger_list += triggerList
+                print(f"trigerlist:  {triggerList}")
+            trigger_list.append(triggerList)
     return(render_template("index.html", trigger_list = trigger_list))
 
 
