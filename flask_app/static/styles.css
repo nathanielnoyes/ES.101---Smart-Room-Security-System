@@ -1,0 +1,22 @@
+* {
+    color: blue;
+    border: 2px solid black;
+    margin: 0;
+    padding: 0;
+    
+}
+.row{
+    width: 100%;
+    height: auto;
+}
+.column{
+    padding: auto;
+    margin: 2%;
+    height:auto;
+    align-self: center;
+    width: fit-content;
+}
+.column *{
+    display: inline;
+    padding: 5px;
+}

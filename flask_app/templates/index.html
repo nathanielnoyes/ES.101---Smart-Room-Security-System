@@ -2,12 +2,11 @@
 <html>
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles.css">
-</head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"></head>
 <body>
     <section id="SQL_database" class="row">
         {% for trigger in trigger_list %}
-            <div class="row">
+            <div class="column">
             
                 <p>{{trigger[0]}}</p>
                 <p>{{trigger[1]}}</p>
