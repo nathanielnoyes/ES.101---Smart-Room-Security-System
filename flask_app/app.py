@@ -65,7 +65,7 @@ def home():
                 sensorList.append(sensor)
                 print(f"trigerlist:  {sensorList}")
             sensor_list.append(sensorList)
-    return(render_template("index.html", trigger_list = trigger_list, sensor_list = sensor_list))
+    return(render_template("events.html", table = sensor_list)+render_template("events.html", table = trigger_list))
 
 
 if __name__ == '__main__':

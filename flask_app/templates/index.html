@@ -3,39 +3,7 @@
 <head>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"></head>
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    Event:
-                </th>
-                <th>
-                    Date and time:
-                </th>
-                <th>
-                    Sensor number:
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for trigger in trigger_list %}
-            <tr>
-                <td>{{trigger[0]}}</td>
-                <td>{{trigger[1]}}</td>
-                <td>{{trigger[2]}}</td>                    
-            </tr>
-            {% endfor %}
-        </tbody>
-        <tbody>
-            {% for sensor in sensor_list %}
-            <tr>
-                <td>{{sensor[0]}}</td>
-                <td>{{sensor[1]}}</td>
-                <td>{{sensor[2]}}</td>                    
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
+    {% block content %}{% endblock %}
+    <p>test</p>
 </body>
 </html>
