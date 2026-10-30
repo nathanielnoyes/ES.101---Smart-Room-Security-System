@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, render_template
 import json
 import datetime
 import sqlite3#tables are sensors and triggers
+from pages import *
 
 connect = sqlite3.connect('database.db')# format, check thead would make it error out becuse its sends back at different theread
 cursor = connect.cursor()
@@ -43,29 +44,10 @@ def receive_data():
 
 @app.route('/')
 def home():
-    with sqlite3.connect("database.db") as connect:
-        cursor = connect.cursor()
-        triggers = cursor.execute("select * from triggers;")
-        trigger_list = []
-
-        for trigger_subList in triggers:
-            triggerList = []
-            for trigger in trigger_subList:
-                triggerList.append(trigger)
-                print(f"trigerlist:  {triggerList}")
-            trigger_list.append(triggerList)
-    with sqlite3.connect("database.db") as connect:
-        cursor = connect.cursor()
-        sensors = cursor.execute("select * from sensors;")
-        sensor_list = []
-
-        for sensor_subList in sensors:
-            sensorList = []
-            for sensor in sensor_subList:
-                sensorList.append(sensor)
-                print(f"trigerlist:  {sensorList}")
-            sensor_list.append(sensorList)
-    return(render_template("events.html", table = sensor_list)+render_template("events.html", table = trigger_list))
+    sensor = render_template("events.html", table = event("sensors"))
+    trigger = render_template("events.html", table = event("triggers"))
+    index = render_template("index.html")
+    return(index+sensor + trigger)
 
 
 if __name__ == '__main__':

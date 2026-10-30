@@ -4,18 +4,18 @@ import datetime
 import sqlite3#tables are sensors and triggers
 database = "database.db"
 
-def events(table):
+def event(table):
     
-    event = render_template("events.html", table = table)
-    with sqlite3.connect(database) as connect:
+    with sqlite3.connect("database.db") as connect:
         cursor = connect.cursor()
-        triggers = cursor.execute(f"select * from {table};")
-        trigger_list = []
+        sensors = cursor.execute(f"select * from {table};")
+        sensor_list = []
 
-        for trigger_subList in triggers:
-            triggerList = []
-            for trigger in trigger_subList:
-                triggerList.append(trigger)
-                print(f"trigerlist:  {triggerList}")
-            trigger_list.append(triggerList)
-    return(event)
+        for sensor_subList in sensors:
+            sensorList = []
+            for sensor in sensor_subList:
+                sensorList.append(sensor)
+                print(f"trigerlist:  {sensorList}")
+            sensor_list.append(sensorList)
+    return(sensor_list)
+
