@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"></head>
-<body>
-    {% block content %}{% endblock %}
-    <p>test</p>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"></head>
+  <body>
+    <nav class="inner">
+        <a href='index.html'><img id="logo_img" src="https://thumbs.dreamstime.com/b/vector-logo-colorful-design-41236752.jpg"><!--got the header from a past project with the goat Mr.W-->
+        <ul class="inner">
+            <li><a href="{{'/'}}">Home</a></li>
+            <li><a href="{{'/triggers'}}">triggers</a></li>
+            <li><a href="{{'/sensors'}}">Sensers</a></li>
+
+        </ul>
+    </nav>
+      {% block content %}{% endblock %}
 </body>
 </html>

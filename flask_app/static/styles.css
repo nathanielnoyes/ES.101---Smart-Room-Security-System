@@ -22,3 +22,72 @@ td{
     align-self: center;
     display: table-cell;
 }
+
+img {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+}
+#logo_img {
+    max-width: 125px;
+    width: 100%;
+    height: auto;
+    
+}
+body {
+    margin: 0 auto;
+}
+nav{
+    background-color: black;
+}
+nav ul {
+    list-style: none;
+}
+nav ul li a{
+    text-decoration: none;
+    font-size: 32px;
+    color: white;
+    gap: 5px;
+}
+nav li a:hover{
+    text-decoration: none;
+    font-size: 32px;
+    color: white;
+}
+.wrapper {
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    border: none !Important;
+}
+
+.inner {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    
+}
+.wrapper .inner div{
+    text-align: center;
+}
+.inner{
+  display: flex;
+  justify-content: space-evenly;
+}
+.alg_cent{
+justify-content: center;
+}
+.col {
+  justify-content: center;
+  text-align: center;
+}
+.row{
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+@media screen and (max-width: 959px){
+    table{
+        width: 100%;
+    }
+}

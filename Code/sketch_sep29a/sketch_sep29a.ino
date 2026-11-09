@@ -7,7 +7,9 @@ String str;
 const char* ssid = "BPstudent";
 const char* pass = "studentuse";
 const char* home = "http://10.30.1.16:5000/api/data";
-
+bool active = false;
+bool butt_flip = digitalRead(12);
+bool pir_flip = digitalRead(14);
 void send_info( String message){
   WiFiClient client;
   HTTPClient http;
@@ -28,7 +30,6 @@ void setup() {
   Serial.begin(115200);
   WiFi.begin(ssid, pass);
   pinMode(0, OUTPUT);
- 
   pinMode(12,INPUT_PULLUP);
   pinMode(14,INPUT_PULLUP);
   bool butt;
@@ -43,12 +44,26 @@ void setup() {
 }
 
 void loop() {
+  
+
+  
   butt = digitalRead(12);
   pir = digitalRead(14);
-  if(not(butt) || pir){
+  if((not(butt) || pir)&&not(active)){
     String str = ("{\"ID\" : " + String(0) +",\"Button\" : " + String(not(butt)) + ",\"Pir\" : " + String(pir) + "}");
     send_info(str);
-    delay(10000);
+    butt_flip = digitalRead(12);
+
+    pir_flip = digitalRead(14);
+
+
+  }
+  active = true;
+
+  if(active){
+    if(((butt != butt_flip) || (not(pir) != not(pir_flip)))){
+      active = false;
+    }
   }
   delay(250);
 }

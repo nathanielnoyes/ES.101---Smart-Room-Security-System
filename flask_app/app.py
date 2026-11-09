@@ -44,10 +44,18 @@ def receive_data():
 
 @app.route('/')
 def home():
-    sensor = render_template("events.html", table = event("sensors"))
-    trigger = render_template("events.html", table = event("triggers"))
-    index = render_template("index.html")
-    return(index+sensor + trigger)
+    
+    return(render_template("index.html"))
+
+@app.route('/triggers')
+def triggers():
+    
+    return(render_template("triggers.html",table = event("triggers")))
+
+@app.route('/sensors')
+def sensors():
+    
+    return(render_template("sensors.html",table = event("sensors")))
 
 
 if __name__ == '__main__':
