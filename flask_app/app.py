@@ -20,6 +20,8 @@ connect.execute(
     '''create table if not exists triggers (
 EVENTID INTEGER PRIMARY KEY AUTOINCREMENT,
 TIME DATETIME,
+PIR int,
+butt int,
 SENSORID int,
 CONSTRAINT fk_sensor
 FOREIGN KEY (SENSORID)
@@ -35,7 +37,7 @@ def receive_data():
     print("Received data from Feather:", data)
     date = datetime.datetime.now()
     with sqlite3.connect("database.db") as connect:
-        command = f"insert into triggers(TIME, SENSORID) values('{date}','{data["ID"]}');"
+        command = f"insert into triggers(TIME,PIR,butt, SENSORID) values('{date}',{data["Button"]},{data["Pir"]},'{data["ID"]}');"
         cursor = connect.cursor()
         print(command)
         print(cursor.execute(command))
